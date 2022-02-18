@@ -14,6 +14,18 @@ body {
     font-size: clamp(.5rem, 2.5vmin, 1.5rem);
 }
 
+.header{
+    user-select: none;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: .75em;
+    color: white;
+    border-bottom: 1px solid hsl(204, 7%, 29%);
+}
+
 .keyboard {
     display: grid;
     grid-template-columns: repeat(20, minmax(auto, 1.25rem));
@@ -90,11 +102,76 @@ body {
     justify-content: center;
     align-items: center;
     user-select: none;
+    transition: transform 250ms linear;
+    /* double of the FLIP_ANIMATION_DURATION in js file */
+}
+
+.tile.shake {
+    animation: shake 250ms ease-in-out;
+}
+
+.tile.dance {
+    animation: dance 500ms ease-in-out;
+}
+
+@keyframes shake {
+    10% {
+        transform: translateX(-5%);
+    }
+
+    30% {
+        transform: translateX(5%);
+    }
+
+    50% {
+        transform: translateX(-7.5%);
+    }
+
+    70% {
+        transform: translateX(7.5%);
+    }
+
+    90% {
+        transform: translateX(-5%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes dance {
+    20% {
+        transform: translateY(-50%);
+    }
+
+    40% {
+        transform: translateY(5%);
+    }
+
+    60% {
+        transform: translateY(-25%);
+    }
+
+    80% {
+        transform: translateY(2.5%);
+    }
+
+    90% {
+        transform: translateY(-5%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.tile.flip {
+    transform: rotateX(90deg);
 }
 
 .tile[data-state="active"] {
     border-color: hsl(200, 1%, 34%);
-
 }
 
 .tile[data-state="wrong"] {
@@ -110,4 +187,116 @@ body {
 .tile[data-state="correct"] {
     border: none;
     background-color: hsl(115, 29%, 43%);
+}
+
+.alert-container {
+    position: fixed;
+    top: 10vh;
+    left: 50vw;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alert {
+    background-color: hsl(204, 7%, 85%);
+    padding: .75em;
+    user-select: none;
+    border-radius: .25em;
+    opacity: 1;
+    transition: opacity 500ms ease-in-out;
+    margin-bottom: .5em;
+}
+
+.alert:last-child {
+    margin-bottom: 0;
+}
+
+.alert.hide {
+    opacity: 0;
+}
+
+.modal-container {
+    background-color: rgba(0, 0, 0, 0);
+    height: 100vh;
+    pointer-events: none;
+    width: 100vw;
+    position: fixed;
+    transition: background-color 900ms linear;
+}
+
+.modal-container.dark {
+    background-color: rgba(0, 0, 0, 0.6);
+    pointer-events: all;
+}
+
+.modal {
+    position: fixed;
+    top: -100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: hsl(210, 10%, 20%);
+    transition: top 1s ease-in-out;
+    width: 60%;
+    padding: 1.5em;
+    color: #f3f3f3;
+    border-radius: 0.5em;
+}
+
+.modal-answers {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.modal-answers button {
+    padding: .5em 1em;
+    font-size: inherit;
+    margin: 10px 0;
+}
+
+.agree-button {
+    color: #fff;
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.disagree-button {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.modal-message {
+    font-size: clamp(.5rem, 2.5vmin, 1.5rem);
+}
+
+.line {
+    width: 100%;
+    background-color: #ccc;
+    height: 1px;
+    background-color: hsl(var(--hue, 200),
+            var(--saturation, 1%),
+            calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
+    margin: 3px 0;
+}
+
+.modal.show {
+    top: 50%;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.restart-btn{
+    border: none;
+    font-size: 1em;
+    outline: none;
+    background: none;
+    margin-left: 3px;
 }

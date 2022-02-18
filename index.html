@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <div class="header">
+        <h1>Wordle Clone</h1>
+    </div>
+    <div class="alert-container" data-alert-container>
+    </div>
     <div data-guess-grid class="guess-grid">
         <div class="tile"></div>
         <div class="tile"></div>
@@ -43,7 +48,7 @@
         <div class="tile"></div>
         <div class="tile"></div>
     </div>
-    <div class="keyboard">
+    <div data-keyboard class="keyboard">
         <button class="key" data-key="Q">Q</button>
         <button class="key" data-key="W">W</button>
         <button class="key" data-key="E">E</button>
@@ -65,7 +70,7 @@
         <button class="key" data-key="K">K</button>
         <button class="key" data-key="L">L</button>
         <div class="space"></div>
-        <button class="key large">Enter</button>
+        <button class="key large" data-enter>Enter</button>
         <button class="key" data-key="Z">Z</button>
         <button class="key" data-key="X">X</button>
         <button class="key" data-key="C">C</button>
@@ -74,7 +79,7 @@
         <button class="key" data-key="N">N</button>
         <button class="key" data-key="M">M</button>
         <button data-delete class="key large">
-            <i class="fas fa-backspace"></i>
+            <i data-delete class="fas fa-backspace"></i>
         </button>
     </div>
     <script src="./dictinonary.js"></script>
