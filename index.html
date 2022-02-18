@@ -11,12 +11,12 @@
 </head>
 
 <body>
-    <div class="guess-grid">
-        <div class="tile" data-state="active">T</div>
-        <div class="tile" data-state="wrong">A</div>
-        <div class="tile" data-state="wrong-location">B</div>
-        <div class="tile" data-state="correct">L</div>
-        <div class="tile">E</div>
+    <div data-guess-grid class="guess-grid">
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
+        <div class="tile"></div>
         <div class="tile"></div>
         <div class="tile"></div>
         <div class="tile"></div>
@@ -44,9 +44,9 @@
         <div class="tile"></div>
     </div>
     <div class="keyboard">
-        <button class="key wrong" data-key="Q">Q</button>
-        <button class="key wrong-location" data-key="W">W</button>
-        <button class="key correct" data-key="E">E</button>
+        <button class="key" data-key="Q">Q</button>
+        <button class="key" data-key="W">W</button>
+        <button class="key" data-key="E">E</button>
         <button class="key" data-key="R">R</button>
         <button class="key" data-key="T">T</button>
         <button class="key" data-key="Y">Y</button>
@@ -77,6 +77,9 @@
             <i class="fas fa-backspace"></i>
         </button>
     </div>
+    <script src="./dictinonary.js"></script>
+    <script src="./targetWords.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
