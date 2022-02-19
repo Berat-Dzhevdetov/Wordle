@@ -54,6 +54,7 @@ body {
 
 .key.large {
     grid-column: span 3;
+    font-size: inherit;
 }
 
 .key i.fa-backspace {
@@ -216,77 +217,6 @@ body {
 
 .alert.hide {
     opacity: 0;
-}
-
-.modal-container {
-    background-color: rgba(0, 0, 0, 0);
-    height: 100vh;
-    pointer-events: none;
-    width: 100vw;
-    position: fixed;
-    transition: background-color 900ms linear;
-}
-
-.modal-container.dark {
-    background-color: rgba(0, 0, 0, 0.6);
-    pointer-events: all;
-}
-
-.modal {
-    position: fixed;
-    top: -100%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    background-color: hsl(210, 10%, 20%);
-    transition: top 1s ease-in-out;
-    width: 60%;
-    padding: 1.5em;
-    color: #f3f3f3;
-    border-radius: 0.5em;
-}
-
-.modal-answers {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.modal-answers button {
-    padding: .5em 1em;
-    font-size: inherit;
-    margin: 10px 0;
-}
-
-.agree-button {
-    color: #fff;
-    background-color: #28a745;
-    border-color: #28a745;
-}
-
-.disagree-button {
-    color: #fff;
-    background-color: #dc3545;
-    border-color: #dc3545;
-}
-
-.modal-message {
-    font-size: clamp(.5rem, 2.5vmin, 1.5rem);
-}
-
-.line {
-    width: 100%;
-    background-color: #ccc;
-    height: 1px;
-    background-color: hsl(var(--hue, 200),
-            var(--saturation, 1%),
-            calc(var(--lightness-offset, 0%) + var(--lightness, 51%)));
-    margin: 3px 0;
-}
-
-.modal.show {
-    top: 50%;
 }
 
 .bold {

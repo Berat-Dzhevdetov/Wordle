@@ -6,28 +6,31 @@ const maxLength = targetWords.length;
 let targetWord = targetWords[getRandomInt(maxLength)];
 const alertContainer = document.querySelector("[data-alert-container]");
 const keyboard = document.querySelector("[data-keyboard]");
+const WIN_MESSAGE = `You won! Play again?<button class='restart-btn' data-reset-btn onclick='restartGame();'><i class='fa fa-refresh' aria-hidden='true'></i></button>`;
+const LOST_MESSAGE = `You lost! The word was <span class='bold'>${targetWord}</span>. Try again?<button data-reset-btn class='restart-btn' onclick='restartGame(event);'><i class='fa fa-refresh' aria-hidden='true'></i></button>`;
 
-function restartGame(e) {
+function restartGame() {
     resetTiles();
     resetKeyboard();
     targetWord = targetWords[getRandomInt(maxLength)];
     startInteraction();
-    let alert = e.target.parentNode.parentNode;
+    let btn = alertContainer.querySelector('[data-reset-btn]');
+    let alert = btn.parentNode;
     alert.classList.add('hide');
-    alert.addEventListener('transitionend',() => {
+    alert.addEventListener('transitionend', () => {
         alert.remove();
-    })
+    });
 }
 
-function resetTiles(){
-    guessGrid.querySelectorAll('[data-letter]').forEach(tile =>{
+function resetTiles() {
+    guessGrid.querySelectorAll('[data-letter]').forEach(tile => {
         delete tile.dataset.letter;
         delete tile.dataset.state;
         tile.textContent = "";
     })
 }
 
-function resetKeyboard(){
+function resetKeyboard() {
     keyboard.querySelectorAll('.correct').forEach(key => {
         key.classList.remove('correct');
     });
@@ -123,7 +126,7 @@ function submitGuess() {
     }
 
     const guess = activeTiles.reduce((word, tile) => {
-        return word + tile.dataset.letter;
+        return word + tile.dataset.letter.toLowerCase();
     }, "");
 
     if (!dictionary.includes(guess)) {
@@ -174,6 +177,7 @@ function showAlert(msg, duration = 1000) {
     alert.innerHTML = msg;
     alert.classList.add("alert");
     alertContainer.prepend(alert);
+
     if (duration == null) return;
     setTimeout(() => {
         alert.classList.add('hide');
@@ -194,9 +198,9 @@ function shakeTiles(tiles) {
 
 function checkWinLose(guess, tiles) {
     if (guess === targetWord) {
-        showAlert(`You won! Play again?<button class='restart-btn' onclick='restartGame(event);'><i class='fa fa-refresh' aria-hidden='true'></i></button>`, null);
-        danceTiles(tiles);
+        showAlert(WIN_MESSAGE, null);
         stopInteraction();
+        danceTiles(tiles);
         return;
     }
 
@@ -204,7 +208,7 @@ function checkWinLose(guess, tiles) {
 
     if (remaingTiles.length == 0) {
         stopInteraction();
-        showAlert(`You lost! The word was <span class='bold'>${targetWord}</span>. Try again?<button class='restart-btn' onclick='restartGame(event);'><i class='fa fa-refresh' aria-hidden='true'></i></button>`, null);
+        showAlert(LOST_MESSAGE, null);
     }
 }
 
